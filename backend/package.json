@@ -1,0 +1,27 @@
+{
+  "name": "customer-support-refund-backend",
+  "version": "1.0.0",
+  "description": "AI-Powered Customer Support Refund API with Gemini, Policy Rules, and Safeguards",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
+    "seed": "tsx src/db/seed.ts",
+    "test": "echo \"Running backend verification...\" && tsx src/test/verify.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.24.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.2",
+    "express": "^5.2.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
