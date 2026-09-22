@@ -42,8 +42,13 @@ export default function AuditDrawer({ refund, auditLog, order, onClose, onUpdate
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/50 backdrop-blur-sm flex justify-end">
-      <div className="w-full max-w-2xl bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+    <div
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+    >
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
         <div className="p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
           <div>
@@ -135,10 +140,7 @@ export default function AuditDrawer({ refund, auditLog, order, onClose, onUpdate
 
               {/* Customer Explanation */}
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5 flex items-center gap-1">
-                  <MessageSquare className="w-3.5 h-3.5 text-slate-400" />
-                  Customer Submitted Explanation
-                </span>
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5 flex items-center gap-1" >Customer Submitted Explanation</span>
                 <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-800 leading-relaxed">
                   {refund.customer_explanation}
                 </div>
@@ -147,7 +149,6 @@ export default function AuditDrawer({ refund, auditLog, order, onClose, onUpdate
               {/* System Audit Reasoning */}
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5 flex items-center gap-1">
-                  <Terminal className="w-3.5 h-3.5 text-slate-400" />
                   AI & Policy Decision Reasoning
                 </span>
                 <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs font-mono text-slate-700 leading-relaxed whitespace-pre-wrap">

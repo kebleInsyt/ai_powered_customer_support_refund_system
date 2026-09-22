@@ -119,8 +119,8 @@ export function getOrdersByCustomerId(customerId: string): Order[] {
   return orders;
 }
 
-export function getOrderById(orderId: string): Order | undefined {
-  const order = db.prepare('SELECT * FROM orders WHERE id = ?').get(orderId) as unknown as Order | undefined;
+export function getOrderById(orderIdOrNumber: string): Order | undefined {
+  const order = db.prepare('SELECT * FROM orders WHERE id = ? OR order_number = ?').get(orderIdOrNumber, orderIdOrNumber) as unknown as Order | undefined;
   if (order) {
     order.items = db.prepare('SELECT * FROM order_items WHERE order_id = ?').all(order.id) as unknown as OrderItem[];
   }

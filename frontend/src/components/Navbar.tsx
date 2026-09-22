@@ -21,9 +21,6 @@ export default function Navbar() {
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold text-lg tracking-tight text-slate-900">WORKNOON</span>
-              <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-semibold tracking-wide border border-slate-200">
-                Support Ops
-              </span>
             </div>
             <p className="text-xs text-slate-500">Automated Refund & Dispute Management</p>
           </div>
@@ -33,11 +30,10 @@ export default function Navbar() {
         <nav className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-xl border border-slate-200/80">
           <Link
             href="/"
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              isCustomerPortal
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${isCustomerPortal
                 ? 'bg-white text-slate-900 shadow-sm font-semibold'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
-            }`}
+              }`}
           >
             <UserCheck className="w-4 h-4 text-sky-600" />
             <span>Customer Portal</span>
@@ -45,11 +41,10 @@ export default function Navbar() {
 
           <Link
             href="/admin"
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              isAdmin
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${isAdmin
                 ? 'bg-white text-slate-900 shadow-sm font-semibold'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
-            }`}
+              }`}
           >
             <LayoutDashboard className="w-4 h-4 text-indigo-600" />
             <span>Support Dashboard</span>
