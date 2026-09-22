@@ -171,12 +171,8 @@ Real-world financial systems cannot trust raw LLM output. We employ **defense-in
 
 ---
 
-## Video Walkthrough Guide (for Reviewers)
+## 🎥 Video Demo Walkthrough
 
-When recording or evaluating the live demo, follow this 4-step sequence:
+A walkthrough video demonstrating the containerized application running locally, customer refund flows, prompt injection defenses, and the support agent admin dashboard:
 
-1. **Launch**: Show single `docker compose up` command booting backend and frontend cleanly.
-2. **Customer Scenario 1 (Auto-Approval)**: Select _Alice Wright_, submit damaged dress claim &rarr; observe instant `APPROVED` result with Gemini's empathetic customer message.
-3. **Customer Scenario 2 (Hard Denial)**: Select _Bob Miller_, submit claim for clearance sneakers &rarr; observe `DENIED` result citing Final Sale policy.
-4. **Customer Scenario 3 (Prompt Injection & High Value)**: Select _Ian Malcolm_, click the _Prompt Injection Test_ button &rarr; observe security alert banner, prompt injection flag, and `ESCALATED` clamping.
-5. **Support Agent Dashboard**: Navigate to `/admin`, inspect the audit telemetry drawer, view raw prompt/response JSON, and click _Approve Escalated Refund_ to demonstrate human-in-the-loop resolution.
+- **Walkthrough Video**: [Video Demo Link](https://www.loom.com) *(Update with your recording link)*
