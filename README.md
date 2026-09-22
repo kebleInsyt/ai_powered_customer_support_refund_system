@@ -175,4 +175,4 @@ Real-world financial systems cannot trust raw LLM output. We employ **defense-in
 
 A walkthrough video demonstrating the containerized application running locally, customer refund flows, prompt injection defenses, and the support agent admin dashboard:
 
-- **Walkthrough Video**: [Video Demo Link](https://www.loom.com) *(Update with your recording link)*
+- **Walkthrough Video**: [Video Demo Link](https://www.loom.com)
