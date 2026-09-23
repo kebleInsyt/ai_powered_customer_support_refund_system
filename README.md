@@ -169,6 +169,7 @@ Real-world financial systems cannot trust raw LLM output. We employ **defense-in
 | **Backend**            | Express 5 + TypeScript        | Lightweight, fast Docker builds, native async error handling, and shared TypeScript interfaces with the Next.js frontend.                                                                                                                  |
 | **LLM Provider**       | Google Gemini 2.5 Flash       | High inference speed, native structured JSON schema enforcement, low latency, and robust reasoning capabilities.                                                                                                                           |
 | **Decision Authority** | Hybrid (Code Rules + AI)      | Avoids non-deterministic financial leakage while preserving human-like empathy and qualitative damage assessment.                                                                                                                          |
+| **Auth & Access**      | Order Lookup (Evaluation Mode)| _Production Architecture_: In a live production system, customers authenticate via OAuth/JWT and can only query orders matching their verified session (`order.customer_id === req.user.id`) to prevent IDOR vulnerabilities. _Assessment Trade-off_: Scoped to direct order lookup with 1-click test chips so reviewers can test all 15 customer personas seamlessly without login friction. |
 
 ---
 
