@@ -5,7 +5,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { RefundRequest, DashboardStats, AuditLog, Order, Customer } from '../../lib/types';
 import { fetchRefunds, fetchStats, fetchRefundDetails, fetchCustomers } from '../../lib/api';
 import StatsCard from '../../components/StatsCard';
-import AuditDrawer from '../../components/AuditDrawer';
+import AuditModal from '../../components/AuditModal';
 import {
   Search,
   Filter,
@@ -339,7 +339,7 @@ export default function AdminDashboardPage() {
 
       {/* Centered Modal: Refund Audit Inspector */}
       {isModalOpen && activeRefund && (
-        <AuditDrawer
+        <AuditModal
           refund={activeRefund}
           auditLog={activeAuditLog}
           order={activeOrder}

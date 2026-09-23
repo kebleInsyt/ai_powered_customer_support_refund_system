@@ -13,7 +13,7 @@ interface Props {
   onUpdated: () => void;
 }
 
-export default function AuditDrawer({ refund, auditLog, order, onClose, onUpdated }: Props) {
+export default function AuditModal({ refund, auditLog, order, onClose, onUpdated }: Props) {
   const [activeTab, setActiveTab] = useState<'overview' | 'audit' | 'prompt'>('overview');
   const [agentName, setAgentName] = useState('Support Agent Sarah');
   const [agentNotes, setAgentNotes] = useState('');
