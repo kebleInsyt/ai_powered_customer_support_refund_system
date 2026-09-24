@@ -11,6 +11,7 @@ export interface Customer {
   total_refunds_count: number;
   refund_risk_score: number; // 0.0 (low risk) to 1.0 (high risk)
   notes?: string;
+  orders?: Order[];
 }
 
 export interface OrderItem {

@@ -39,19 +39,19 @@ export class SecurityGuard {
     const detectedPatterns: string[] = [];
     const normalized = input.trim();
 
-    // 1. Scan for known prompt injection phrases
+    // Scan for known prompt injection phrases
     for (const pattern of INJECTION_PATTERNS) {
       if (pattern.test(normalized)) {
         detectedPatterns.push(pattern.source);
       }
     }
 
-    // 2. Check for XML/HTML tag breakout attempts
+    // Check for XML/HTML tag breakout attempts
     if (/<(\/)?(system|policy|context|instruction|admin)/i.test(normalized)) {
       detectedPatterns.push('DELIMITER_INJECTION_ATTEMPT');
     }
 
-    // 3. Sanitize text by stripping angle brackets to prevent prompt formatting breakout
+    // Sanitize text by stripping angle brackets to prevent prompt formatting breakout
     const sanitizedText = normalized
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')

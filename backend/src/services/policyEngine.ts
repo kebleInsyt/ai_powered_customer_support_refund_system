@@ -33,14 +33,14 @@ export class PolicyEngine {
     const diffTime = Math.abs(now.getTime() - refDate.getTime());
     const daysSinceDelivery = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-    // Rule 1: Time limit (30 days)
+    // Time limit Rule (30 days)
     if (daysSinceDelivery > REFUND_POLICY.MAX_REFUND_WINDOW_DAYS) {
       flags.push('ORDER_TOO_OLD');
       reasons.push(`Order was delivered ${daysSinceDelivery} days ago, exceeding the ${REFUND_POLICY.MAX_REFUND_WINDOW_DAYS}-day return limit.`);
       policyCitations.push(`Policy Section 1: Orders older than ${REFUND_POLICY.MAX_REFUND_WINDOW_DAYS} days are ineligible for refunds.`);
     }
 
-    // Rule 2: Final sale items cannot be refunded
+    // Final sale items cannot be refunded Rule
     const finalSaleItems = selectedItems.filter((i) => i.is_final_sale === 1);
     if (finalSaleItems.length > 0) {
       flags.push('FINAL_SALE_ITEM');
@@ -49,30 +49,36 @@ export class PolicyEngine {
       policyCitations.push('Policy Section 2: Final sale and clearance items are strictly non-refundable.');
     }
 
-    // Rule 3: High value refund (> $500 requires human escalation)
+    // High value refund Rule (> $500 requires human escalation)
     if (requestedAmount > REFUND_POLICY.HIGH_VALUE_THRESHOLD_USD) {
       flags.push('EXCEEDS_500_THRESHOLD');
       reasons.push(`Requested refund amount ($${requestedAmount.toFixed(2)}) exceeds the $${REFUND_POLICY.HIGH_VALUE_THRESHOLD_USD.toFixed(2)} automated limit.`);
       policyCitations.push('Policy Section 3: Refunds over $500 require manual human supervisor approval.');
     }
 
-    // Rule 4: Disputed / conflicting delivery
+    // Disputed / conflicting delivery Rule (claims non-receipt despite signed courier proof)
     const lowerReason = customerReason.toLowerCase();
-    const claimsNeverReceived = lowerReason.includes('never received') || lowerReason.includes('not delivered') || lowerReason.includes('did not get');
+    const claimsNeverReceived =
+      lowerReason.includes('never received') ||
+      lowerReason.includes('not delivered') ||
+      lowerReason.includes('did not get') ||
+      lowerReason.includes('never arrived') ||
+      lowerReason.includes('missing package');
+
     if (claimsNeverReceived && order.signed_by) {
       flags.push('DELIVERY_SIGNATURE_CONFLICT');
       reasons.push(`Customer claims order was not received, but courier record shows delivered and signed by "${order.signed_by}".`);
       policyCitations.push('Policy Section 5: Conflicting or disputed courier delivery records must be escalated for investigation.');
     }
 
-    // Rule 5: High-risk customer account
+    // High-risk customer account Rule
     if (customer.refund_risk_score >= REFUND_POLICY.MAX_ALLOWED_REFUND_RISK_SCORE) {
       flags.push('HIGH_RISK_ACCOUNT');
       reasons.push(`Customer account exhibits elevated refund risk score (${customer.refund_risk_score.toFixed(2)}).`);
       policyCitations.push('Policy Section 5: Accounts with anomalous refund frequency must be escalated to Trust & Safety.');
     }
 
-    // Rule 6: Requested amount exceeds total
+    // Requested amount exceeds total Rule
     if (requestedAmount > order.total_amount) {
       flags.push('AMOUNT_EXCEEDS_ORDER_TOTAL');
       reasons.push(`Requested refund ($${requestedAmount.toFixed(2)}) exceeds the order total ($${order.total_amount.toFixed(2)}).`);

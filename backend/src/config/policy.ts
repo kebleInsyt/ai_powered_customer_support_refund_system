@@ -1,20 +1,20 @@
 export const REFUND_POLICY = {
-  // 1. Time Limits
+  // Time Limits
   MAX_REFUND_WINDOW_DAYS: 30,
 
-  // 2. Financial Limits
+  // Financial Limits
   HIGH_VALUE_THRESHOLD_USD: 500.0,
 
-  // 3. Eligibility Rules
+  // Eligibility Rules
   ALLOW_FINAL_SALE_REFUNDS: false,
   ALLOW_DAMAGED_ITEMS: true,
   ALLOW_WRONG_ITEM_DELIVERED: true,
   ALLOW_DEFECTIVE_ELECTRONICS: true,
 
-  // 4. Fraud & Abuse Heuristics
+  // Fraud & Abuse Heuristics
   MAX_ALLOWED_REFUND_RISK_SCORE: 0.45, // Accounts with > 45% return rate or suspicious history escalate
 
-  // 5. Policy Text for LLM System Prompt Ingestion
+  // Policy Text for LLM System Prompt Ingestion
   POLICY_DOCUMENT_TEXT: `
 # OFFICIAL E-COMMERCE CUSTOMER REFUND POLICY
 
