@@ -44,7 +44,7 @@ export class RefundController {
 
       const { customerId, orderId, selectedItemIds, customerExplanation, customRequestedAmount } = parsed.data;
 
-      // 1. Fetch customer and order ground truth
+      // Fetch customer and order ground truth
       const customer = getCustomerById(customerId);
       if (!customer) {
         res.status(404).json({ success: false, error: 'Customer profile not found' });

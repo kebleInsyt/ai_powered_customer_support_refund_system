@@ -2,9 +2,9 @@
  * Security Guard Service: Prompt Injection & Adversarial Input Detection
  *
  * Provides layered defense against jailbreak attempts and prompt injection:
- * 1. Heuristic pattern scanning for known jailbreak/override signatures.
- * 2. Delimiter containment (strips raw XML/system tags so user cannot close prompt context).
- * 3. Structured boundary encapsulation (<customer_untrusted_input>).
+ * Heuristic pattern scanning for known jailbreak/override signatures.
+ * Delimiter containment (strips raw XML/system tags so user cannot close prompt context).
+ * Structured boundary encapsulation (<customer_untrusted_input>).
  */
 
 export interface SecurityCheckResult {

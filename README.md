@@ -212,4 +212,4 @@ Results: 14 passed, 0 failed
 
 A walkthrough video demonstrating the containerized application running locally, customer refund flows, prompt injection defenses, and the support agent admin dashboard:
 
-- **Walkthrough Video**: [Video Demo Link](https://www.loom.com)
+- **Walkthrough Video**: [Video Demo Link](https://www.loom.com/share/33b5074c8f9444c5aaa47344d01a71a6)
